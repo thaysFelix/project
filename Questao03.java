@@ -2,9 +2,9 @@ package classes;
 import java.util.ArrayList;
 import java.util.Scanner; 
 
-public class Questao02 {
+public class Questao03 {
     
-    public static double mediaRecursiva(ArrayList<Double> valor, int tamanho, int i ) {
+    public double mediaRecursiva(ArrayList<Double> valor, int tamanho, int i ) {
 
         if (i == tamanho - 1){
             return valor.get(i);
@@ -42,7 +42,8 @@ public class Questao02 {
                 break;
             }
         } 
-        media = Questao02.mediaRecursiva(valor, valor.size(), i = 0);
+        Questao03 q3 = new Questao03();
+        media = q3.mediaRecursiva(valor, valor.size(), i = 0);
         System.out.printf("A media e: %.2f\n", media ); 
 
     }
