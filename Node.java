@@ -1,25 +1,37 @@
-package questao02;
+package arvore;
 
 public class Node {
-    
-    private int valor;
-    private Node esquerdo;
-    private Node direito;
-    
-    Node(int valor, Node esquerdo, Node direito) {
-        this.valor = valor;
-        this.esquerdo = esquerdo;
-        this.direito = direito;
-    }
-    
-    public void imprimir(Node n) {
-        System.out.println(n.valor);
-        if(n.esquerdo != null){
-            imprimir(n.esquerdo);
-        }
+
+	protected int value;
+
+	public Node left;
+	public Node right;
+        public Node parent;
+
+	public Node(int value) {
+		this.value = value;
+	}
         
-        if(n.direito != null) {
-            imprimir(n.direito);
-        }
-    }
+        public Node() {}
+
+	public boolean isLeaf() {
+		return left == null && right == null;
+	}
+
+	public boolean hasLeft() {
+		return left != null;
+	}
+
+	public boolean hasRight() {
+		return right != null;
+	}
+
+	public void setChilds(Node left, Node right) {
+		this.left = left;
+		this.right = right;
+	}
+	
+	public String toString() {
+		return Integer.toString(value);
+	}
 }
