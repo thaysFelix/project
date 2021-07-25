@@ -1,16 +1,17 @@
-package arvore;
-
+package arvorebinaria;
 import java.util.LinkedList;
 
 public class BinarySearchTree extends Node implements Tree {
+            
     public BinarySearchTree(int value) {
         super(value);
     }
     
     private Node root;
+   
 
     BinarySearchTree() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+      //  throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     protected void setRoot(Node root) {
@@ -40,6 +41,7 @@ public void printFilho(Node no) {
         if(no.hasRight()) {
             printFilho(no.right);
         }
+
     }
 }
     
@@ -53,6 +55,7 @@ private boolean insert(Node node, int value) {
                 newnode.parent = node;
                 
                 node.right = new Node(value);
+                
             }
         } else if (value < node.value) {
             if (node.hasLeft()) {
@@ -191,7 +194,7 @@ private boolean insert(Node node, int value) {
         }
     }
 
-    public void levelOrder() {
+    public void levelOrder(Node root) {
         LinkedList<Node> queue = new LinkedList<>();
         queue.addLast(root);
         while (!queue.isEmpty()) {
