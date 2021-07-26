@@ -239,5 +239,56 @@ private boolean insert(Node node, int value) {
             return super.equals(obj);
         }
     }
+    
+    public int sucessor(Node node, int valorX, int valorY) {
+        int maiorValores[];
+        int i = 0 ;
+        //buscar valor X na arvore
+        if (contains(valorX) == true) {
+            if(node.value == valorY) {
+                return valorY; 
+            }
+            // se o valor do no for maior que o valor x, então coloca em um vetor
+            // depois eh so comparar os valores dentro do vetor e retornar o menor valor
+            // que sera o sucessor do valorX
+            else if (node.value > valorX) { //node.getValue() ???
+                maiorValores[i] = node.getValor(); //como criar vetor dinamico?
+            }           
+           
+    }
+        /*Quest�o 3*/
+    private int countNodes(Node root) {
+		
+        if (root == null) {
+            return 0;
+	}
+		
+        return (1 + countNodes(root.left) + countNodes(root.right));
+    }
+	
+    public int countNodes() {
+	return countNodes(root);
+    }
+	
+	
+    private boolean isComplete(Node root, int index, int nNodes) {
+		
+	if (root == null) {
+            return true;
+	}
+		
+	if (index >= nNodes) {
+            return false;
+	}
+		
+	return (isComplete(root.left, 2 * index + 1, nNodes)
+	        && isComplete(root.right, 2 * index + 2, nNodes));
+    }
+	
+    public boolean isComplete() {
+	return isComplete(root, 0, countNodes());
+    }
+	
+    /*Fim da quest�o 3. Testes na main */
 
 }

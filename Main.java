@@ -40,7 +40,8 @@ public class Main {
         root.insert(8);
         root.setChilds(no3, no10);
 
-        new BinarySearchTree().levelOrder(root);
+        //new BinarySearchTree().levelOrder(root);
+        System.out.println(no7);
        
     }
     

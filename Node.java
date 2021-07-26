@@ -13,6 +13,10 @@ public class Node {
 	}
         
         public Node() {}
+        
+        public int getValor() {
+            return value;
+        }
 
 	public boolean isLeaf() {
 		return left == null && right == null;
