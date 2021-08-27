@@ -25,16 +25,11 @@ public class Heap<T extends Comparable<T>> {
 		int parent = (vet.length - 1)/2; 
   
 		for (int i = parent; i > 0; --i) {
-			
-			int child = ((parent + 1) * 2) - 1;
+			int child = ((i + 1) * 2) - 1;
 			
 			if (vet[child].compareTo(vet[parent]) > 0 ) {
-				
-				System.out.print("entrou");
-              //swap(vet, parent, child);
                   this.up(vet,child);
 			} else if (vet[child].compareTo(vet[parent]) < 0 ) {    
-
                   this.down(vet,child);
 			}
 		}
@@ -65,7 +60,9 @@ public void teste(String a){
 
       if (child > 0) {
           if (vet[child].compareTo(vet[p]) > 0 ) {
-      		
+        	  	System.out.print("\n");
+        	  	System.out.print("Trocando: " + vet[child] + " " + vet[p]);
+        	  	System.out.print("\n");
                   this.swap(vet,child, p);
                   this.up(vet,p);
           }
@@ -73,16 +70,23 @@ public void teste(String a){
   }
 
   private void down(T[] vet, int index) {
-      int p = index;
+	  
+      
       int child = ((index + 1) * 2) - 1;
       if (child + 1 < vet.length) {
-              if (vet[child + 1].compareTo(vet[p]) > 0 ) {
-            	    this.swap(vet,p, child + 1);
+              if (vet[child + 1].compareTo(vet[index]) > 0 ) {
+            	    System.out.print("\n");
+            	  	System.out.print("Trocando: " + vet[index] + " " + vet[child+1]);
+            	  	System.out.print("\n");
+            	    this.swap(vet,index, child + 1);
             	    this.down(vet, child + 1);
               }
-      } else if (child < vet.length) {
-              if (vet[child].compareTo(vet[p]) > 0 ) {
-            	    this.swap(vet,p, child);
+      } else if (child < vet.length) {  
+              if (vet[child].compareTo(vet[index]) > 0 ) {
+            	    System.out.print("\n");
+            	    System.out.print("Trocando: " + vet[index] + " " + vet[child]);
+            	    System.out.print("\n");
+            	    this.swap(vet,index, child);
               }
       }
   }
