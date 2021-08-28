@@ -110,12 +110,6 @@ public class Heap <T extends Comparable<T>>  {
             return size;
     }
     
-    public void print()
-    {
-        for (int i = 1; i <= size; i++) {
-            System.out.println(elements[i]);
-        }
-    }
 }
   
 
