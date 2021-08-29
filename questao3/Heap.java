@@ -1,5 +1,7 @@
 package questao3;
 
+//QUESTAO 3 
+//Classe fornecida alterada para o tipo generico
 public class Heap <T extends Comparable<T>>  {
 
     public static void main(String[] args) {
@@ -15,7 +17,7 @@ public class Heap <T extends Comparable<T>>  {
         heap.insert(20);
         heap.insert(150);
         heap.insert(200);
-        heap.insert(30);
+        heap.insert(32);
         heap.insert(10);
 
         while(heap.size() > 0) {
@@ -43,19 +45,18 @@ public class Heap <T extends Comparable<T>>  {
             }
         }
     }
-
+    
     private void down(int index) {
         int p = index;
         int child = ((index + 1) * 2) - 1;
         
-        if (child + 1 < size) {
-            if (elements[child + 1].compareTo(elements[p]) > 0) {
-                swap(p, child + 1);
-                down(child + 1);
+        if (child + 1  < size) {
+            if (child + 1 < size && elements[child + 1].compareTo(elements[child]) > 0) {
+                child += 1;
             }
-        } else if (child < size) {
             if (elements[child].compareTo(elements[p]) > 0) {
                 swap(p, child);
+                down(child);
             }
         }
     }
@@ -109,7 +110,6 @@ public class Heap <T extends Comparable<T>>  {
     public int size() {
             return size;
     }
-    
 }
   
 
