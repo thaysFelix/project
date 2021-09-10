@@ -15,9 +15,11 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.text.BadLocationException;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 public class EditorArquivos extends javax.swing.JFrame {
-
+   // JTextArea conteudoArquivo = new JTextArea();
     BufferedReader buffRead;
     File f;
     String fileName;
@@ -31,10 +33,14 @@ public class EditorArquivos extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        conteudoArquivo = new javax.swing.JTextArea();
         caminho = new javax.swing.JLabel();
         linhaEditada = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        conteudoArquivo = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         menu = new javax.swing.JMenu();
         abrirArquivo = new javax.swing.JMenuItem();
@@ -44,6 +50,34 @@ public class EditorArquivos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        caminho.setText("Caminho:");
+
+        linhaEditada.setText("Linha editada: ");
+
+        jTree1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTree1AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane2.setViewportView(jTree1);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 609, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 12, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("tab1", jPanel1);
+
         conteudoArquivo.setColumns(20);
         conteudoArquivo.setRows(5);
         conteudoArquivo.addCaretListener(new javax.swing.event.CaretListener() {
@@ -51,11 +85,18 @@ public class EditorArquivos extends javax.swing.JFrame {
                 conteudoArquivoCaretUpdate(evt);
             }
         });
+        conteudoArquivo.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                conteudoArquivoAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(conteudoArquivo);
 
-        caminho.setText("Caminho:");
-
-        linhaEditada.setText("Linha editada: ");
+        jTabbedPane2.addTab("tab2", jScrollPane1);
 
         menu.setText("Arquivos");
 
@@ -83,24 +124,33 @@ public class EditorArquivos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(caminho)
-                    .addComponent(linhaEditada))
-                .addContainerGap(111, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(caminho)
+                        .addGap(456, 456, 456)
+                        .addComponent(linhaEditada))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(caminho)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(linhaEditada)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(268, 268, 268)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(linhaEditada)
+                            .addComponent(caminho))))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -111,14 +161,25 @@ public class EditorArquivos extends javax.swing.JFrame {
         chooserFile.showOpenDialog(null);
         f = chooserFile.getSelectedFile();
         fileName = f.getAbsolutePath();
+        
+        //jTabbedPane2 = new javax.swing.JTabbedPane();
+        JPanel jPanelFirst = new JPanel();
+        
+        //jTabbedPane2.addTab(fileName, jPanelFirst);
+        JTabbedPane jTabbedPane2 = new JTabbedPane();
+        jTabbedPane2.add(fileName, jPanelFirst);
+        
         caminho.setText("Caminho: "+ fileName);
         try {
             FileReader textReader = new FileReader(fileName);
-
+            JTextArea teste = new JTextArea();
             buffRead = new BufferedReader(textReader);
-            conteudoArquivo.read(buffRead, null);
+            teste.read(buffRead, null);
             buffRead.close();
-            conteudoArquivo.requestFocus();
+            
+            jPanelFirst.add(teste);
+            
+            teste.requestFocus();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -138,15 +199,22 @@ public class EditorArquivos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
+    private void jTree1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTree1AncestorAdded
+      
+    }//GEN-LAST:event_jTree1AncestorAdded
+
+    private void conteudoArquivoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_conteudoArquivoAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_conteudoArquivoAncestorAdded
+
     private void conteudoArquivoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_conteudoArquivoCaretUpdate
         try {
             int linhaSendoEditada = conteudoArquivo.getLineOfOffset(conteudoArquivo.getCaretPosition()) + 1;
             linhaEditada.setText("Linha editada: "+ String.valueOf(linhaSendoEditada));
-            
+
         } catch (BadLocationException ex) {
             Logger.getLogger(EditorArquivos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }//GEN-LAST:event_conteudoArquivoCaretUpdate
 
     public static void main(String args[]) {
@@ -191,7 +259,11 @@ public class EditorArquivos extends javax.swing.JFrame {
     private javax.swing.JTextArea conteudoArquivo;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTree jTree1;
     private javax.swing.JLabel linhaEditada;
     private javax.swing.JMenu menu;
     // End of variables declaration//GEN-END:variables
